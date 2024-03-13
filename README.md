@@ -1,6 +1,6 @@
 # Concurrent programming
 
-## Working Group
+## Working Group PN 15.45
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
