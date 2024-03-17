@@ -19,6 +19,17 @@ namespace TPW
         public MainWindow()
         {
             InitializeComponent();
+            TextBlock block = new TextBlock();
+            block.Text = "Programowanie współbieżne";
+            block.HorizontalAlignment = HorizontalAlignment.Center;
+            block.VerticalAlignment = VerticalAlignment.Center;
+            block.FontSize = 30;
+            block.FontFamily = new FontFamily("Century Gothic");
+            block.Foreground = Brushes.Black;
+            block.Background = Brushes.Pink;
+            block.Padding = new Thickness(5, 10, 5, 10);
+            this.Content = block;
+            this.RegisterName("TextBlock1", block);
         }
     }
 }
