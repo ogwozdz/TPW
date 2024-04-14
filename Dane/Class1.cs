@@ -1,4 +1,4 @@
-﻿namespace Dane
+﻿namespace Logika
 {
     public class Class1
     {
