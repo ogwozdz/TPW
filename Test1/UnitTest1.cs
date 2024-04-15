@@ -1,4 +1,4 @@
-using TPW;
+using TPW.View;
 using NUnit.Framework;
 using System.Windows.Controls;
 using System.Threading;

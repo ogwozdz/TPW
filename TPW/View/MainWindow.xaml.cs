@@ -8,8 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TPW.ViewModel;
 
-namespace TPW
+namespace TPW.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,17 +20,21 @@ namespace TPW
         public MainWindow()
         {
             InitializeComponent();
-            TextBlock block = new TextBlock();
-            block.Text = "Programowanie współbieżne";
-            block.HorizontalAlignment = HorizontalAlignment.Center;
-            block.VerticalAlignment = VerticalAlignment.Center;
-            block.FontSize = 30;
-            block.FontFamily = new FontFamily("Century Gothic");
-            block.Foreground = Brushes.Black;
-            block.Background = Brushes.Pink;
-            block.Padding = new Thickness(5, 10, 5, 10);
-            this.Content = block;
-            this.RegisterName("TextBlock1", block);
+            DataContext = new BallViewModel();
+        }
+        public void GenerateBalls(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is BallViewModel viewModel)
+            {
+                if (int.TryParse(NumberInput.Text, out int numberOfBalls))
+                {
+                    viewModel.InitializeBalls(numberOfBalls);
+                }
+                else
+                {
+                    MessageBox.Show("Wpisz prawidłową liczbę");
+                }
+            }
         }
     }
 }
