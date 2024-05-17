@@ -21,7 +21,7 @@
         </Border>
 
         <Border Grid.Row="1" Background="#1C3144" Margin="10">
-            <Border BorderBrush="Black" BorderThickness="10" Width="850" Height="397" Background="#7EA16B">
+            <Border BorderBrush="Black" BorderThickness="10" Width="870" Height="415" Background="#7EA16B">
                 <Canvas>
                     <ItemsControl ItemsSource="{Binding Balls}">
                         <ItemsControl.ItemsPanel>
