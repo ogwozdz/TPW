@@ -121,16 +121,6 @@ public class BallLogic
             ball1.VelocityY -= 2 * velocityComponent1 * normY;
             ball2.VelocityX -= 2 * velocityComponent2 * normX;
             ball2.VelocityY -= 2 * velocityComponent2 * normY;
-            /*double relVelocityX = ball1.VelocityX - ball2.VelocityX;
-            double relVelocityY = ball1.VelocityY - ball2.VelocityY;
-            double dotProduct = relVelocityX * normX + relVelocityY * normY;
-
-
-            double impulse = 2 * dotProduct / (ball1.Mass + ball2.Mass);
-            ball1.VelocityX -= impulse * ball2.Mass * normX;
-            ball1.VelocityY -= impulse * ball2.Mass * normY;
-            ball2.VelocityX += impulse * ball1.Mass * normX;
-            ball2.VelocityY += impulse * ball1.Mass * normY;*/
         }
     }
 

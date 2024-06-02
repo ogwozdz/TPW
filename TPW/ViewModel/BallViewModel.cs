@@ -23,10 +23,13 @@ namespace TPW.ViewModel
 
         private Random random = new Random();
 
+        private Logger logger;
+
         public BallViewModel()
         {
             timer.Interval = TimeSpan.FromMilliseconds(20);
             timer.Tick += async (s, e) => await MoveBallsAsync2();
+            logger = new Logger("C:\\Users\\Gusia\\Desktop\\Współbiegi\\TPW\\Log_Balls.json");
         }
 
         public void InitializeBalls(int numberOfBalls)
@@ -40,6 +43,7 @@ namespace TPW.ViewModel
             {
                 timer.Start();
             }
+            StartLogging();
         }
 
         private static readonly object collisionLock = new object();
@@ -60,10 +64,18 @@ namespace TPW.ViewModel
             }
             await Task.WhenAll(moveTasks);
         }
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        private async void StartLogging()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            while (true)
+            {
+                await logger.LogAsync(Balls);
+                await Task.Delay(1000); 
+            }
         }
+
+      //  protected virtual void OnPropertyChanged(string propertyName)
+      //  {
+      //      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      //  }
     }
 }
