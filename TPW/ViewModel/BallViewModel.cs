@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using Dane;
 using Logika;
+using Logger;
 
 namespace TPW.ViewModel
 {
@@ -23,12 +24,16 @@ namespace TPW.ViewModel
 
         private Random random = new Random();
 
-        private Logger logger;
+        private;
+
+        private DispatcherTimer loggingTimer = new DispatcherTimer();
 
         public BallViewModel()
         {
             timer.Interval = TimeSpan.FromMilliseconds(20);
             timer.Tick += async (s, e) => await MoveBallsAsync2();
+            loggingTimer.Interval = TimeSpan.FromSeconds(1);
+            loggingTimer.Tick += async (s, e) => await LogBallsAsync();
             logger = new Logger("C:\\Users\\Gusia\\Desktop\\Współbiegi\\TPW\\Log_Balls.json");
         }
 
@@ -44,6 +49,10 @@ namespace TPW.ViewModel
                 timer.Start();
             }
             StartLogging();
+            if (!loggingTimer.IsEnabled)
+            {
+                loggingTimer.Start();
+            }
         }
 
         private static readonly object collisionLock = new object();
@@ -73,9 +82,14 @@ namespace TPW.ViewModel
             }
         }
 
-      //  protected virtual void OnPropertyChanged(string propertyName)
-      //  {
-      //      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-      //  }
+        private async Task LogBallsAsync()
+        {
+            await logger.LogAsync(Balls);
+        }
+
+        //  protected virtual void OnPropertyChanged(string propertyName)
+        //  {
+        //      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //  }
     }
 }
